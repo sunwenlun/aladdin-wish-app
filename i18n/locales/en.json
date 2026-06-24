@@ -1,0 +1,119 @@
+{
+  "appName": "Aladdin's Wish Lamp",
+  "tagline": "Make a wish, the genie can grant you three wishes",
+  "nav": {
+    "home": "Home",
+    "wish": "Wish",
+    "mailbox": "Mailbox",
+    "mine": "My Wishes"
+  },
+  "lang": {
+    "title": "Choose Your Language",
+    "subtitle": "You can change this anytime in settings",
+    "confirm": "Continue",
+    "en": "English",
+    "zh": "中文"
+  },
+  "home": {
+    "wishesGranted": "Wishes Granted",
+    "comingSoon": "Coming Soon",
+    "makeWish": "Make a Wish",
+    "statWishes": "In the Lamp",
+    "statFulfilled": "Wishes Fulfilled",
+    "statTravelers": "Travelers"
+  },
+  "type": {
+    "A": { "name": "Letter to Future Me", "desc": "Write a wish to your future self" },
+    "B": { "name": "A Word from Afar", "desc": "Receive an unexpected message" },
+    "C": { "name": "Happy Birthday", "desc": "Make someone's birthday special" },
+    "D": { "name": "Draw My Dream", "desc": "Visualize your dream" },
+    "E": { "name": "Teach Me One Thing", "desc": "Learn something new" },
+    "F": { "name": "Take a Photo", "desc": "Capture a moment" },
+    "Z": { "name": "🔒 Free Dream", "desc": "Unlock when lamp power recovers" }
+  },
+  "wish": {
+    "title": "Make a Wish",
+    "chooseType": "Choose Wish Type",
+    "writeContent": "Write Your Wish",
+    "placeholder": "Write your wish here... (max 200 characters)",
+    "submit": "Place in Lamp",
+    "remaining": "wishes remaining",
+    "noChances": "You've used all your wishes! More types coming soon ✨",
+    "success": "Your wish is in the lamp!",
+    "successDesc": "It will drift to fellow travelers. You can track its journey anytime.",
+    "successTrack": "Track Its Journey",
+    "successHome": "Back to Home",
+    "tooLong": "Wish must be within 200 characters",
+    "selectFirst": "Please select a wish type first"
+  },
+  "mailbox": {
+    "title": "Mailbox",
+    "subtitle": "Wishes drifted to you, awaiting your response",
+    "empty": "Your mailbox is empty",
+    "emptyDesc": "Wishes will drift to you soon...",
+    "hint": "When other travelers make wishes, they will drift to your mailbox",
+    "from": "From",
+    "drifted": "drifted to you",
+    "batch": "Batch {num}",
+    "driftedToYou": "This wish drifted to you in batch {batch}",
+    "implement": "I'll Help ✨",
+    "forward": "Forward 📨",
+    "drift": "Let it Drift 🌊",
+    "peace": "Wish for World Peace 🌍",
+    "implementTitle": "Help Fulfill This Wish",
+    "implementDesc": "Write a message to tell them how you fulfilled their wish",
+    "messagePlaceholder": "Write your message to them...",
+    "confirmImplement": "Fulfill Wish",
+    "forwardTitle": "Share to Find a Helper",
+    "forwardDesc": "Share this wish to social media so more people can see and help",
+    "shareMessageLabel": "Share Message (editable)",
+    "choosePlatform": "Choose a platform to share",
+    "shareFirst": "Share first, then confirm",
+    "shareHint": "Pick a platform above to share, then tap confirm",
+    "confirmForward": "Done Sharing",
+    "driftDone": "The wish continues to drift. Good luck to it 🌊",
+    "forwardDone": "Forwarded! Thank you for connecting people 📨",
+    "implementDone": "Wish fulfilled! You lit up someone's world ✨",
+    "peaceDone": "May the world forever be at peace 🌍",
+    "error": "Something went wrong, please try again"
+  },
+  "mine": {
+    "title": "My Wishes",
+    "empty": "No wishes yet",
+    "emptyDesc": "Tap the lamp to make your first wish",
+    "status": {
+      "drifting": "Drifting",
+      "received": "Received",
+      "implementing": "Being Fulfilled",
+      "fulfilled": "Fulfilled",
+      "aiFulfilled": "Genie Fulfilled"
+    },
+    "driftCount": "drifted to {count} travelers",
+    "batch": "Batch {num}"
+  },
+  "genie": {
+    "greeting": "Hello, friend. I am Aladdin's Lamp — I can grant you 3 wishes",
+    "hint": "You have 3 wishes. Choose wisely.",
+    "tapToStart": "Tap to Begin"
+  },
+  "case": {
+    "fulfilled": "Fulfilled",
+    "aiFulfilled": "Genie Fulfilled",
+    "comingSoon": "Coming Soon",
+    "implementer": "Fulfilled by",
+    "viewStory": "View Story",
+    "driftPath": "Drifted through {count} travelers",
+    "shareStory": "Share Story",
+    "downloadPrompt": "Want to make a wish too?"
+  },
+  "common": {
+    "settings": "Settings",
+    "language": "Language",
+    "back": "Back",
+    "cancel": "Cancel"
+  },
+  "loading": "Loading...",
+  "detail": {
+    "tapToView": "Tap to view"
+  }
+}

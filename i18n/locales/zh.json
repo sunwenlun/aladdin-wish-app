@@ -1,0 +1,119 @@
+{
+  "appName": "阿拉丁许愿灯",
+  "tagline": "许下心愿，灯神可以满足你三个愿望",
+  "nav": {
+    "home": "首页",
+    "wish": "许愿",
+    "mailbox": "信箱",
+    "mine": "我的愿望"
+  },
+  "lang": {
+    "title": "选择你的语言",
+    "subtitle": "随时可以在设置中更改",
+    "confirm": "继续",
+    "en": "English",
+    "zh": "中文"
+  },
+  "home": {
+    "wishesGranted": "已实现的愿望",
+    "comingSoon": "即将上线",
+    "makeWish": "许个愿吧",
+    "statWishes": "已放入灯中",
+    "statFulfilled": "已实现",
+    "statTravelers": "旅人"
+  },
+  "type": {
+    "A": { "name": "给未来的我", "desc": "给未来的自己写一个愿望" },
+    "B": { "name": "一句来自远方的话", "desc": "收到一句来自陌生人的话" },
+    "C": { "name": "生日快乐", "desc": "让生日变得特别" },
+    "D": { "name": "画出我的梦想", "desc": "把梦想画出来" },
+    "E": { "name": "教我一件事", "desc": "学一件新事物" },
+    "F": { "name": "拍一张照片", "desc": "记录一个瞬间" },
+    "Z": { "name": "🔒 自由梦想", "desc": "等神灯法力恢复后解锁" }
+  },
+  "wish": {
+    "title": "许下心愿",
+    "chooseType": "选择愿望类型",
+    "writeContent": "写下你的愿望",
+    "placeholder": "在这里写下你的愿望...（最多200字）",
+    "submit": "放入灯中",
+    "remaining": "个愿望机会",
+    "noChances": "你已经用完了所有许愿机会！更多类型即将上线 ✨",
+    "success": "你的愿望已放入灯中！",
+    "successDesc": "它将漂向各位旅人。你可以随时查看它的漂流轨迹。",
+    "successTrack": "查看漂流轨迹",
+    "successHome": "返回首页",
+    "tooLong": "愿望需要在200字以内",
+    "selectFirst": "请先选择一个愿望类型"
+  },
+  "mailbox": {
+    "title": "信箱",
+    "subtitle": "漂向你的愿望，等你回应",
+    "empty": "信箱里还没有愿望",
+    "emptyDesc": "愿望很快会漂向你...",
+    "hint": "当其他旅人许愿后，愿望会漂流到你的信箱",
+    "from": "来自",
+    "drifted": "漂流到你这里",
+    "batch": "第 {num} 批漂流",
+    "driftedToYou": "这是第 {batch} 批漂流到你这里的愿望",
+    "implement": "我来帮TA实现 ✨",
+    "forward": "转发给能帮的人 📨",
+    "drift": "让它继续漂流 🌊",
+    "peace": "希望世界永远和平 🌍",
+    "implementTitle": "帮TA实现这个愿望",
+    "implementDesc": "写一段话告诉TA，你帮TA实现了这个愿望",
+    "messagePlaceholder": "写下你想对TA说的话...",
+    "confirmImplement": "实现愿望",
+    "forwardTitle": "分享让更多人帮忙",
+    "forwardDesc": "把这个愿望分享到社交媒体，让更多人看到并帮忙实现",
+    "shareMessageLabel": "分享文案（可编辑）",
+    "choosePlatform": "选择分享平台",
+    "shareFirst": "先分享，再确认",
+    "shareHint": "先点击上方平台分享，然后点确认",
+    "confirmForward": "已分享，确认",
+    "driftDone": "愿望已继续漂流，祝它好运 🌊",
+    "forwardDone": "已转发！感谢你的牵线搭桥 📨",
+    "implementDone": "愿望已实现！你点亮了一个人的世界 ✨",
+    "peaceDone": "愿世界永远和平 🌍",
+    "error": "操作失败，请重试"
+  },
+  "mine": {
+    "title": "我的愿望",
+    "empty": "还没有许过愿",
+    "emptyDesc": "点击神灯许下你的第一个愿望",
+    "status": {
+      "drifting": "漂流中",
+      "received": "已被接收",
+      "implementing": "实现中",
+      "fulfilled": "已实现",
+      "aiFulfilled": "灯神实现"
+    },
+    "driftCount": "已漂流给 {count} 位旅人",
+    "batch": "第 {num} 批"
+  },
+  "genie": {
+    "greeting": "你好，朋友。我是阿拉丁神灯——我可以满足你3个愿望",
+    "hint": "你有3个愿望机会，请珍惜。",
+    "tapToStart": "点击开始"
+  },
+  "case": {
+    "fulfilled": "已实现",
+    "aiFulfilled": "灯神实现",
+    "comingSoon": "即将上线",
+    "implementer": "实现者",
+    "viewStory": "查看故事",
+    "driftPath": "漂流了 {count} 位旅人",
+    "shareStory": "分享故事",
+    "downloadPrompt": "你也想许愿吗？"
+  },
+  "common": {
+    "settings": "设置",
+    "language": "语言",
+    "back": "返回",
+    "cancel": "取消"
+  },
+  "loading": "加载中...",
+  "detail": {
+    "tapToView": "点击查看"
+  }
+}

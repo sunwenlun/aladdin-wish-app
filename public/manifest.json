@@ -1,0 +1,36 @@
+{
+  "name": "Aladdin's Wish Lamp",
+  "short_name": "Aladdin",
+  "description": "Make your wish and let it travel the world. The genie grants you 3 wishes.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "icons": [
+    {
+      "src": "/genie-lamp-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/genie-lamp-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "许愿",
+      "url": "/wish",
+      "icons": [{ "src": "/genie-lamp-icon.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "信箱",
+      "url": "/mailbox",
+      "icons": [{ "src": "/genie-lamp-icon.png", "sizes": "96x96" }]
+    }
+  ]
+}
