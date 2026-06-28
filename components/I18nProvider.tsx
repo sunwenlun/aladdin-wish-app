@@ -16,14 +16,6 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  // 避免水合不匹配：服务端渲染时不显示内容
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-[#0a0a1a] flex items-center justify-center">
-        <div className="text-amber-400 text-4xl animate-pulse">🪔</div>
-      </div>
-    );
-  }
-
+  // 始终渲染子组件（不再阻塞），避免 Supabase 等依赖崩溃时整个页面卡在 loading
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }

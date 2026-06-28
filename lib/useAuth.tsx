@@ -35,6 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 通过 email / auth_uid 查找或创建数据库用户
   const findOrCreateDbUser = useCallback(async (email: string, authUid: string, nickname?: string) => {
+    if (!supabase) return null;
     try {
       // 1. 先查 email
       const { data: existingByEmail, error: emailErr } = await supabase
@@ -145,6 +146,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 监听认证状态变化
   useEffect(() => {
+    // Supabase 未配置时跳过（避免崩溃）
+    if (!supabase || !supabaseAuth) {
+      setLoading(false);
+      return;
+    }
+
     // 获取当前 session
     supabaseAuth.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
@@ -155,6 +162,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setAuthUser(null);
         setDbUser(null);
       }
+      setLoading(false);
+    }).catch((err) => {
+      // 网络错误或 Supabase 故障时，优雅降级
+      console.error('[Auth] getSession error:', err);
       setLoading(false);
     });
 
@@ -176,6 +187,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 注册 → 直接使用 signUp 返回的 session，不再多余调用 signInWithPassword
   const signUp = useCallback(async (email: string, password: string, nickname?: string) => {
+    if (!supabase || !supabaseAuth) return { error: 'Supabase not configured' };
     const { data, error } = await supabaseAuth.auth.signUp({
       email,
       password,
@@ -203,6 +215,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 登录
   const signIn = useCallback(async (email: string, password: string) => {
+    if (!supabase || !supabaseAuth) return { error: 'Supabase not configured' };
     const { data, error } = await supabaseAuth.auth.signInWithPassword({
       email,
       password,
@@ -222,7 +235,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 退出
   const signOut = useCallback(async () => {
-    await supabaseAuth.auth.signOut();
+    if (supabaseAuth) await supabaseAuth.auth.signOut();
     setAuthUser(null);
     setDbUser(null);
     // 清除 localStorage 中的 user_id
@@ -233,6 +246,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // 刷新数据库用户
   const refreshDbUser = useCallback(async () => {
+    if (!supabase) return;
     const storedId = getCurrentUserId();
     if (!storedId) return;
     const { data } = await supabase.from('users').select('*').eq('id', storedId).single();

@@ -9,8 +9,8 @@ function getInitialLanguage(): string {
   if (typeof window === 'undefined') return 'en';
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved === 'en' || saved === 'zh') return saved;
-  // 检测浏览器语言，中文用户自动显示中文
-  return navigator.language.startsWith('zh') ? 'zh' : 'en';
+  // 默认语言为英语，用户可手动在设置中切换语言
+  return 'en';
 }
 
 if (!i18n.isInitialized) {

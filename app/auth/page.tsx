@@ -4,17 +4,20 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/useAuth';
+import Link from 'next/link';
+import { supabaseAuth } from '@/lib/supabaseAuth';
 
 export default function AuthPage() {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   const { authUser, dbUser, signIn, signUp, signOut } = useAuth();
-  const [mode, setMode] = useState<'login' | 'register'>('login');
+  const [mode, setMode] = useState<'login' | 'register' | 'forgot'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const isZh = i18n.language === 'zh';
 
@@ -51,6 +54,29 @@ export default function AuthPage() {
   const handleSignOut = async () => {
     await signOut();
     router.push('/');
+  };
+
+  // 忘记密码：发送重置邮件
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    const { error } = await supabaseAuth.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/reset-password`,
+    });
+
+    setLoading(false);
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setSuccess(isZh
+        ? '✅ 重置链接已发送到您的邮箱，请查收邮件'
+        : '✅ Reset link sent to your email, please check your inbox');
+    }
   };
 
   // ===== 已登录 → 显示账户信息 =====
@@ -189,7 +215,74 @@ export default function AuthPage() {
               ? (isZh ? '🪔 登录' : '🪔 Sign In')
               : (isZh ? '✨ 注册' : '✨ Sign Up')}
         </button>
-      </form>
+        </form>
+
+        {/* 忘记密码链接 - 仅登录模式 */}
+        {mode === 'login' && (
+          <div className="text-center mt-4">
+            <button
+              type="button"
+              onClick={() => { setMode('forgot'); setError(''); setSuccess(''); setPassword(''); }}
+              className="text-xs text-gray-500 hover:text-amber-400 transition-colors"
+            >
+              {isZh ? '忘记密码？' : 'Forgot password?'}
+            </button>
+          </div>
+        )}
+
+        {/* forgot 模式：输入邮箱发送重置链接 */}
+        {mode === 'forgot' && (
+          <form onSubmit={handleForgotPassword} className="w-full max-w-sm space-y-4 mt-4">
+            <h2 className="text-lg font-bold text-white text-center mb-4">
+              {isZh ? '🔑 重置密码' : '🔑 Reset Password'}
+            </h2>
+            <p className="text-xs text-gray-400 text-center mb-4">
+              {isZh ? '输入注册邮箱，我们将发送重置链接到您的邮箱'
+                : 'Enter your registered email, we will send you a reset link'}
+            </p>
+
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">{isZh ? '邮箱' : 'Email'}</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="traveler@example.com"
+                required
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-amber-400/50 transition-all"
+              />
+            </div>
+
+            {error && (
+              <div className="px-4 py-2.5 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-400">
+                ⚠️ {error}
+              </div>
+            )}
+            {success && (
+              <div className="px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400 text-center">
+                {success}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading || !email.trim()}
+              className="w-full py-3.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-bold disabled:opacity-30 hover:scale-[1.02] transition-all"
+            >
+              {loading ? '...' : (isZh ? '📧 发送重置链接' : '📧 Send Reset Link')}
+            </button>
+
+            <p className="text-center text-xs text-gray-500 mt-4">
+              <button
+                type="button"
+                onClick={() => { setMode('login'); setError(''); setSuccess(''); }}
+                className="text-amber-400 font-medium"
+              >
+                ← {isZh ? '返回登录' : 'Back to Sign In'}
+              </button>
+            </p>
+          </form>
+        )}
 
       <div className="mt-6 text-center">
         <p className="text-xs text-gray-500">

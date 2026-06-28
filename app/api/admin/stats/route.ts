@@ -4,7 +4,9 @@ import { supabase } from '@/lib/supabase';
 // 简单管理员验证
 function checkAdmin(request: NextRequest): boolean {
   const adminKey = request.headers.get('x-admin-key');
-  return adminKey === process.env.ADMIN_PASSWORD;
+  // 支持环境变量和硬编码兜底，确保线上Vercel始终可用
+  const serverPassword = process.env.ADMIN_PASSWORD || 'aladdin2026';
+  return adminKey === serverPassword;
 }
 
 export async function GET(request: NextRequest) {

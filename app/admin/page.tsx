@@ -143,15 +143,24 @@ export default function AdminPage() {
 function DashboardTab({ password }: { password: string }) {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState<string>('');
 
   const fetchStats = useCallback(async () => {
+    setLoading(true);
+    setFetchError('');
     try {
       const res = await fetch('/api/admin/stats', {
         headers: { 'x-admin-key': password },
       });
       const data = await res.json();
-      setStats(data);
-    } catch (e) {
+      if (!res.ok) {
+        setFetchError(`API错误 (${res.status}): ${data.error || res.statusText}`);
+        setStats(null);
+      } else {
+        setStats(data);
+      }
+    } catch (e: any) {
+      setFetchError(`网络错误: ${e.message || '请检查服务器是否运行'}`);
       console.error('Fetch stats error:', e);
     } finally {
       setLoading(false);
@@ -168,6 +177,16 @@ function DashboardTab({ password }: { password: string }) {
     return (
       <div className="flex items-center justify-center py-20">
         <div className="text-gray-500 animate-pulse">加载中...</div>
+      </div>
+    );
+  }
+
+  if (fetchError) {
+    return (
+      <div className="text-center py-20 text-gray-500">
+        <div className="text-red-400 text-sm mb-2">⚠️ {fetchError}</div>
+        <p className="text-xs text-gray-600">可能是Vercel冷启动延迟，请等待5秒后重试</p>
+        <button onClick={fetchStats} className="mx-auto mt-4 px-6 py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-900 font-bold text-sm hover:scale-[1.02] transition-all">重试</button>
       </div>
     );
   }

@@ -3,7 +3,7 @@
 // PWA: 离线缓存 + 推送通知 + 后台同步
 // ============================================
 
-const CACHE_NAME = 'aladdin-v1';
+const CACHE_NAME = 'aladdin-v2'; // 更新版本号强制清除旧缓存
 const STATIC_ASSETS = [
   '/',
   '/wish',

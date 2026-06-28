@@ -13,18 +13,19 @@ export function Navigation() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isZh = i18n.language === 'zh';
 
-  // admin 页面不显示底部导航
-  if (pathname?.startsWith('/admin')) return null;
-
+  // ✅ 所有 hooks 必须在条件判断之前调用（React Hooks 规则）
   useEffect(() => {
     supabaseAuth.auth.getSession().then(({ data: { session } }) => {
       setIsLoggedIn(!!session?.user);
-    });
+    }).catch(() => {}); // 防止网络错误导致未处理的 Promise rejection
     const { data: listener } = supabaseAuth.auth.onAuthStateChange((event, session) => {
       setIsLoggedIn(!!session?.user);
     });
     return () => listener.subscription.unsubscribe();
   }, []);
+
+  // admin 页面不显示底部导航（在所有 hooks 之后）
+  if (pathname?.startsWith('/admin')) return null;
 
   const items = [
     { href: '/', label: t('nav.home'), icon: Home },
